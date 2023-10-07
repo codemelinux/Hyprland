@@ -1,0 +1,323 @@
+//  __  __           _       _            
+// |  \/  | ___   __| |_   _| | ___  ___  
+// | |\/| |/ _ \ / _` | | | | |/ _ \/ __| 
+// | |  | | (_) | (_| | |_| | |  __/\__ \ 
+// |_|  |_|\___/ \__,_|\__,_|_|\___||___/ 
+//                                        
+//  
+// by Stephan Raabe (2023) 
+// ----------------------------------------------------- 
+//
+{
+    // Workspaces
+    "hyprland/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": false,
+        "on-click": "activate",
+        "sort-by-number": true,
+        "on-scroll-up": "hyprctl dispatch workspace e+1",
+        "on-scroll-down": "hyprctl dispatch workspace e-1",
+        "format": "{name}",
+        "persistent_workspaces": {
+            "1": "1", 
+            "2": [],
+            "3": [],
+            "4": [],
+            "5": [],
+            "6": [],
+            "7": [],
+            "8": [],
+            "9": [],
+            "10": []
+        }
+        
+    },
+
+    // Taskbar
+    "wlr/taskbar": {
+        "format": "{icon}",
+        "icon-size": 14,
+        "tooltip-format": "{title}",
+        "on-click": "activate",
+        "on-click-middle": "close",
+        "ignore-list": [
+           "Kitty"
+        ],
+        "app_ids-mapping": {
+            "firefoxdeveloperedition": "firefox-developer-edition"
+        },
+        "rewrite": {
+            "Firefox Web Browser": "Firefox",
+            "Foot Server": "Terminal"
+        }
+    },
+
+    // Hyprland Window
+    "hyprland/window": {
+        "format": "   {}",
+        "separate-outputs": true,
+        "rewrite": {
+            "${USER}@${set_sysname}:(.*)": "$1 ",
+            "(.*) — Mozilla Firefox": "$1 󰈹",
+            "(.*)Mozilla Firefox": "Firefox 󰈹",
+            "(.*) - Visual Studio Code": "$1 󰨞",
+            "(.*)Visual Studio Code": "Code 󰨞",
+            "(.*) — Thunar": "$1 󰉋",
+            "(.*)Spotify": "Spotify 󰓇",
+            "(.*)Steam": "Steam 󰓓"
+        }
+    },
+
+    // Youtube Subscriber Count
+    "custom/youtube": {
+        "format": " {}",
+        "exec": "python ~/private/youtube.py",
+        "restart-interval": 600,
+        "on-click": "brave https://studio.youtube.com",
+        "tooltip": false
+    },
+
+    // Launch kitty
+    "custom/launch_kitty": {
+        "format": " ",
+        "on-click": "exec kitty",
+        "tooltip": false
+    },
+
+    // Updates Count
+    "custom/updates": {
+        "format": "  {}",
+        "tooltip-format": "{}",
+        "escape": true,
+        "return-type": "json",       
+        "exec": "~/dotfiles/scripts/updates.sh",
+        "restart-interval": 60,
+        "on-click": "kitty -e ~/dotfiles/scripts/installupdates.sh",
+        "tooltip": false
+    },
+
+    // Filemanager Launcher
+    "custom/filemanager": {
+        "format": "",
+        "on-click": "~/dotfiles/scripts/filemanager.sh",
+        "tooltip": false
+    },
+
+    // Outlook Launcher
+    "custom/outlook": {
+        "format": "",
+        "on-click": "brave --app=https://outlook.office.com/mail/",
+        "tooltip": false
+    },
+
+    // Teams Launcher
+    "custom/teams": {
+        "format": "",
+        "on-click": "chromium --app=https://teams.microsoft.com/go",
+        "tooltip": false
+    },
+
+    // Brave Launcher
+    "custom/brave": {
+        "format": "",
+        "on-click": "brave",
+        "tooltip": false
+    },
+
+    // ChatGPT Launcher
+    "custom/chatgpt": {
+        "format": "",
+        "on-click": "brave --app=https://chat.openai.com",
+        "tooltip": false
+    },
+
+    // Rofi Calculator
+    "custom/calculator": {
+        "format": "",
+        "on-click": "~/dotfiles/scripts/calculator.sh",
+        "tooltip": false
+    },
+
+    // Windows VM
+    "custom/windowsvm": {
+        "format": "",
+        "on-click": "~/private/launchvm.sh",
+        "tooltip": false
+    },
+
+    // Rofi Application Launcher
+    "custom/appmenu": {
+        "format": "󱗼 Apps",
+        "on-click": "sh -c '(sleep 0.5s; pkill wofi || wofi -c ~/dotfiles/wofi/config-lmenu)' & disown",
+        "tooltip": false
+       
+    },
+
+    // Power Menu
+    "custom/exit": {
+        "format": "",
+        "on-click": "wlogout",
+        "tooltip": false
+    },
+
+    // Keyboard State
+    "keyboard-state": {
+        "numlock": true,
+        "capslock": true,
+        "format": "{name} {icon}",
+        "format-icons": {
+            "locked": "",
+            "unlocked": ""
+        }
+    },
+
+    // System tray
+    "tray": {
+        // "icon-size": 21,
+        "spacing": 10
+    },
+
+    // Clock
+    "clock": {
+        // "timezone": "America/New_York",
+        "format": "{:%I:%M %p 󰃭 %a %d}",
+        "format-alt": "{:%H:%M  %b %Y}",
+        "tooltip-format": "<big>{: %A, %B %e %Y}</big>\n<tt><big>{calendar}</big></tt>",
+        
+    },
+
+    // Battery
+    "battery": {
+        "states": {
+            "good": 80,
+            "warning": 30,
+            "critical": 20
+        },
+        "format": "{icon}",
+        "format-charging": " {capacity}%",
+        "format-plugged": " {capacity}%",
+        "format-alt-click": "click-right",
+        "format-alt": "{icon} {capacity}%",
+        "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
+    },
+
+    // Memory
+    "memory": {
+        "format": "/M {}% "
+    },
+
+    // CPU
+    "cpu": {
+        "interval": 10,
+        "format": "󰍛 {usage}%",
+        "format-alt": "{icon0}{icon1}{icon2}{icon3}",
+        "format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"],
+        "on-click": "kitty --title btop sh -c 'btop'"
+    },
+
+    // Harddisc space used
+    "disk": {
+        "interval": 30,
+        "format": " {percentage_used}% ",
+        "path": "/"
+    }, 
+    
+    // Network
+    "network": {
+        // "interface": "wlp2*", // (Optional) To force the use of this interface
+        "format-wifi": "󰤨 {essid}",
+        "format-ethernet": "󱘖 Wired",
+        "tooltip-format": "󱘖 {ipaddr}  {bandwidthUpBytes}  {bandwidthDownBytes}",
+        "format-linked": "󱘖 {ifname} (No IP)",
+        "format-disconnected": " Disconnected",
+        "format-alt": "󰤨 {signalStrength}%",
+        "interval": 5
+    },
+
+    
+    "battery": {
+        "states": {
+            // "good": 95,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon}   {capacity}%",
+        "format-charging": "  {capacity}%",
+        "format-plugged": "  {capacity}%",
+        "format-alt": "{icon}  {time}",
+        // "format-good": "", // An empty format will hide the module
+        // "format-full": "",
+        "format-icons": [" ", " ", " ", " ", " "]
+    },
+
+    // Pulseaudio
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-bluetooth": "{volume}% {icon} {format_source}",
+        "format-bluetooth-muted": " {icon} {format_source}",
+        "format-muted": " {format_source}",
+        "format-source": "{volume}% ",
+        "format-source-muted": "",
+        "on-click": "~/dotfiles/waybar/scripts/volume --toggle",
+        "on-click-right": "pavucontrol",
+        "on-scroll-up": "~/dotfiles/waybar/scripts/volume --inc",
+        "on-scroll-down": "~/dotfiles/waybar/scripts/volume --dec",
+        "scroll-step": 5,
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+        "tooltip": true,
+        "tooltip-format": "{icon} at {volume}%"
+    },
+
+    // Pulseaudio Microphone
+    "pulseaudio#microphone": {
+        "format": "{format_source}",
+        "format-source": " {volume}%",
+        "format-source-muted": "  Muted",
+        "on-click": "~/dotfiles/waybar/scripts/volume --toggle-mic",
+        "on-click-right": "pavucontrol",
+        "on-scroll-up": "~/dotfiles/waybar/scripts/volume --mic-inc",
+        "on-scroll-down": "~/dotfiles/waybar/scripts/volume --mic-dec",
+        "scroll-step": 5,
+        "tooltip": true,
+        "tooltip-format": " at {volume}%"
+    },
+
+    // Keyboard backlight
+    "backlight": {
+        "device": "intel_backlight",
+        "format": "{icon}",
+        "format-alt-click": "click-right",
+        "format-alt": "{icon} {percent}%",
+        "format-icons": ["󰃞", "󰃟", "󰃠"],
+        "on-scroll-up": "~/dotfiles/waybar/scripts/brightness --inc",
+        "on-scroll-down": "~/dotfiles/waybar/scripts/brightness --dec"
+    },
+
+    // Bluetooth
+    "bluetooth": {
+        "format-disabled": "",
+        "format-off": "",
+        "interval": 30,
+        "on-click": "blueman-manager"
+    },
+
+    // Other
+    "user": {
+        "format": "{user}",
+        "interval": 60,
+        "icon": false,
+    },
+
+    "tray": {
+        "icon-size": 12,
+        "spacing": 10
+    }
+}
